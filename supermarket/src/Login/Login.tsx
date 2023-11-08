@@ -2,26 +2,27 @@ import React, { useState } from "react";
 import {
   StyleSheet,
   Text,
-   View,
+  View,
   TextInput,
   TouchableOpacity,
 } from "react-native";
+import Icon from "react-native-vector-icons/AntDesign";
 
-
-const Login = () => {
-  const onPressLogin = () => {
-    console.log('oi')
-  };
-  const onPressForgotPassword = () => {
-    console.log('oi')
-  };
-  const onPressSignUp = () => {
-    console.log('oi')
-  };
+const Login = ({navigation}) => {
   const [form, setForm] = useState({
     email: "",
     password: "",
   });
+  const onPressLogin = () => {
+    navigation.navigate("Home")
+    console.log(form)
+  };
+  const onPressForgotPassword = () => {
+    navigation.navigate("ForgotPassword")
+  };
+  const onPressSignUp = () => {
+    navigation.navigate("CreateAccount")
+  };
   const handleEmailChange = (text) => {
     setForm({ ...form, email: text });
   };
@@ -66,19 +67,19 @@ const Login = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#4FD3DA",
+    backgroundColor: "#E6D1D8",
     alignItems: "center",
     justifyContent: "center",
   },
   title: {
     fontWeight: "bold",
     fontSize: 50,
-    color: "#fb5b5a",
+    color: "#391E22",
     marginBottom: 40,
   },
   inputView: {
     width: "80%",
-    backgroundColor: "#3AB4BA",
+    backgroundColor: "#D0B0B1",
     borderRadius: 25,
     height: 50,
     marginBottom: 20,
@@ -87,16 +88,17 @@ const styles = StyleSheet.create({
   },
   inputText: {
     height: 50,
-    color: "white",
+    color: "#391E22",
   },
   forgotAndSignUpText: {
-    color: "white",
+    color: "#391E22",
     fontSize: 11,
   },
   loginBtn: {
     width: "80%",
-    backgroundColor: "#fb5b5a",
+    backgroundColor: "#9F807D",
     borderRadius: 25,
+    paddingVertical: 25,
     height: 50,
     alignItems: "center",
     justifyContent: "center",

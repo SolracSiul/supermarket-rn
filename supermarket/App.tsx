@@ -1,11 +1,24 @@
-import { StyleSheet, Text, View } from 'react-native';
-import tw from 'twrnc'
+import React, { useState } from "react";
+import { View } from "react-native";
+import { createNativeStackNavigator} from "@react-navigation/native-stack";
+import { NavigationContainer } from "@react-navigation/native";
+import Login from "./src/Login/Login";
+import Forgot from "./src/ForgotPass/Forgot";
+import CreateAcc from "./src/CreateAccount/CreateAcc";
+import Home from "./src/Home/Home";
 
-export default function App() {
+const App = () => {
+  const Stack = createNativeStackNavigator()
   return (
-    <View style={tw`flex w-full justify-center items-center bg-blue-400`}>
-      <Text style={tw`justify-center items-center bg-blue-400`}>hello world</Text>
-    </View>
+   <NavigationContainer>
+    <Stack.Navigator>
+      <Stack.Screen name="Login" options={{headerShown: false}} component={Login}></Stack.Screen>
+      <Stack.Screen name="ForgotPassword" component={Forgot}></Stack.Screen>
+      <Stack.Screen name="CreateAccount" component={CreateAcc}></Stack.Screen>
+      <Stack.Screen name="Home" options={{headerShown: false}}  component={Home}></Stack.Screen>
+    </Stack.Navigator>
+   </NavigationContainer>
   );
-}
+};
 
+export default App;
