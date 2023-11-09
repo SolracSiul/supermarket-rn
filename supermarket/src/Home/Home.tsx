@@ -12,17 +12,21 @@ const Home = () => {
   
   return (
     <View style={styles.container}>
-     <Text>Home de produtos</Text>
+     <Text style={styles.text}>Home de produtos</Text>
     </View>
   );
 };
 const styles = StyleSheet.create({
   container: {
+    textAlign: 'center',
     flex: 1,
-    backgroundColor: "#4FD3DA",
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
+    justifyContent: 'center'
   },
+  text:{
+    fontSize: 30,
+    fontWeight: 'bold'
+  }
  
 });
 export default Home;

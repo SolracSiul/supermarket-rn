@@ -14,9 +14,12 @@ const Login = ({navigation}) => {
     password: "",
   });
   const onPressLogin = () => {
-    navigation.navigate("Home")
+    navigation.navigate("ProductList")
     console.log(form)
   };
+  const onPressProductList = () =>{
+    navigation.navigate("ProductList")
+  }
   const onPressForgotPassword = () => {
     navigation.navigate("ForgotPassword")
   };
@@ -57,6 +60,9 @@ const Login = ({navigation}) => {
       </TouchableOpacity>
       <TouchableOpacity onPress={onPressLogin} style={styles.loginBtn}>
         <Text style={styles.inputText}>LOGIN</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={onPressProductList} style={styles.loginBtn}>
+        <Text style={styles.inputText}>Product list</Text>
       </TouchableOpacity>
       <TouchableOpacity onPress={onPressSignUp}>
         <Text style={styles.forgotAndSignUpText}>Signup</Text>
