@@ -18,13 +18,13 @@ const App = () => {
     <CartProvider>
       <NavigationContainer>
         <Stack.Navigator>
+          <Stack.Screen name="Home" options={{headerShown: false}}  component={Home}></Stack.Screen>
           <Stack.Screen name="Login" options={{headerShown: false}} component={Login}></Stack.Screen>
           <Stack.Screen name="ForgotPassword" component={Forgot}></Stack.Screen>
           <Stack.Screen name="ProductList" component={ProductList} options={({navigation}) => ({title: 'Products',headerRight: () => <CartIcon navigation={navigation}/>})}></Stack.Screen>
           <Stack.Screen name="ProductDetails" component={ProductDetails}></Stack.Screen>
           <Stack.Screen name="Cart" component={Cart}></Stack.Screen>
           <Stack.Screen name="CreateAccount" component={CreateAcc}></Stack.Screen>
-          <Stack.Screen name="Home" options={{headerShown: false}}  component={Home}></Stack.Screen>
         </Stack.Navigator>
       </NavigationContainer>
     </CartProvider>

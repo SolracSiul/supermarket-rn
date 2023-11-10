@@ -7,6 +7,8 @@ import {
   TouchableOpacity,
 } from "react-native";
 import Icon from "react-native-vector-icons/AntDesign";
+import * as Animatable from 'react-native-animatable'
+import tw from "twrnc";
 
 const Login = ({navigation}) => {
   const [form, setForm] = useState({
@@ -35,79 +37,107 @@ const Login = ({navigation}) => {
   };
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Login Screen</Text>
-      <View style={styles.inputView}>
+      <Animatable.View animation="fadeInLeft" delay={500} style={styles.containerHeader}>
+        <Text style={styles.message}>Bem-vindo(a)</Text>
+      </Animatable.View>
+
+      <Animatable.View animation="fadeInUp" style={styles.containerForm}>
+        <Text style={styles.title}>Email</Text>
         <TextInput
-          style={styles.inputText}
-          placeholder="Email"
-          placeholderTextColor="#003f5c"
-          onChangeText={handleEmailChange}
-          value={form.email}
+          placeholder="Digite um email..."
+          style={styles.input}
+          />
+          <Text style={styles.title}>Senha</Text>
+          <TextInput
+          placeholder="Sua senha."
+          style={styles.input}
         />
+      <View style={tw`w-[100%] flex items-center justify-center`}>
+        <TouchableOpacity style={styles.customBtn} onPress={() => onPressLogin()} >
+            <Text style={styles.buttonText}>Entrar</Text>
+        </TouchableOpacity>
       </View>
-      <View style={styles.inputView}>
-        <TextInput
-          style={styles.inputText}
-          secureTextEntry
-          placeholder="Password"
-          placeholderTextColor="#003f5c"
-          onChangeText={handlePasswordChange}
-          value={form.password}
-        />
-      </View>
-      <TouchableOpacity onPress={onPressForgotPassword}>
-        <Text style={styles.forgotAndSignUpText}>Forgot Password?</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={onPressLogin} style={styles.loginBtn}>
-        <Text style={styles.inputText}>LOGIN</Text>
-      </TouchableOpacity>
+        <View style={tw`flex flex-col w-[100%] h-[200px] justify-center items-center`}>
+        <TouchableOpacity style={styles.buttonForgot} onPress={() =>onPressForgotPassword() }>
+        <Text style={styles.registerText}>forgot  <Text style={tw`font-bold`}>Password</Text></Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.buttonRegister} onPress={() =>onPressSignUp() }>
+          <Text style={styles.registerText}>Don't have an account ? <Text style={tw`font-bold`}>Sign up</Text></Text>
+        </TouchableOpacity>
+
+        </View>
+
       
-      <TouchableOpacity onPress={onPressSignUp}>
-        <Text style={styles.forgotAndSignUpText}>Signup</Text>
-      </TouchableOpacity>
+
+      </Animatable.View>
+
+
     </View>
   );
 };
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#E6D1D8",
-    alignItems: "center",
-    justifyContent: "center",
+  container:{
+    flex:1,
+    backgroundColor: '#38a69d'
   },
-  title: {
-    fontWeight: "bold",
-    fontSize: 50,
-    color: "#391E22",
-    marginBottom: 40,
-  },
-  inputView: {
-    width: "80%",
-    backgroundColor: "#D0B0B1",
-    borderRadius: 25,
-    height: 50,
-    marginBottom: 20,
-    justifyContent: "center",
-    padding: 20,
-  },
-  inputText: {
-    height: 50,
-    color: "#391E22",
-  },
-  forgotAndSignUpText: {
-    color: "#391E22",
-    fontSize: 11,
-  },
-  loginBtn: {
-    width: "80%",
-    backgroundColor: "#9F807D",
-    borderRadius: 25,
-    paddingVertical: 25,
-    height: 50,
-    alignItems: "center",
-    justifyContent: "center",
-    marginTop: 40,
-    marginBottom: 10,
-  },
-});
+  containerHeader:{
+    marginTop: '14%',
+    marginBottom: '8%',
+    paddingStart: '5%',
+    backgroundColor: '#38a69d'
+
+},
+message:{
+  fontSize: 28,
+  fontWeight: 'bold',
+  color: '#FFF',
+},
+  containerForm:{
+    backgroundColor: '#fff',
+    flex:1,
+    borderTopLeftRadius: 25,
+    borderTopRightRadius: 25,
+    paddingStart: '5%',
+    paddingEnd: '5%',
+ },
+ title:{
+  fontSize: 20,
+  marginTop: 28,
+ },
+input:{
+  borderBottomWidth: 1,
+  height: 40,
+  marginBottom: 12,
+  fontSize: 16,
+  
+},
+customBtn:{
+  backgroundColor: '#38a69d',
+  borderRadius: 10,
+  paddingVertical: 8,
+  width: '70%',
+  alignself: 'center',
+  alignItems: 'center',
+  justifyContent: 'center',
+  marginTop: 20
+},
+buttonText:{
+  color: '#FFF',
+  fontSize: 18,
+  fontWeight: 'bold'
+},
+buttonForgot:{
+
+},
+buttonRegister: {
+  marginTop: 14,
+  alignSelf: 'center',
+  
+},
+registerText:{
+  color: '#33363F'
+}
+
+
+})
 export default Login;
