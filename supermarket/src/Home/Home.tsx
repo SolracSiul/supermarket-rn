@@ -15,6 +15,7 @@ import Icon  from "react-native-vector-icons/Entypo";
 const Home = ({navigation}) => {
   const imageUrl = 'https://example.com/path/to/image.jpg';
   const onPressLogin = () => {
+    console.log('ue')
     navigation.navigate("Login")
     
   };
@@ -25,7 +26,7 @@ const Home = ({navigation}) => {
         <Icon name="shopping-cart" size={94} color={"white"}/>
       </View> 
 
-      <Animatable.View delay={600} animation="fadeInUp" style={styles.containerForm}>
+      <Animatable.View delay={1200} animation="fadeInUp" style={styles.containerForm}>
         <Text style={styles.title}>Monitore e organize seus gastos de qualquer lugar!</Text>
         <Text style={styles.text}> Faça o login para começar</Text>
 
@@ -69,7 +70,7 @@ const styles = StyleSheet.create({
       marginBottom: 12,
     },
     text:{
-      color: 'a1a1a1'
+      color: '#a1a1a1'
     },
     button:{
       position: 'absolute',
@@ -80,13 +81,15 @@ const styles = StyleSheet.create({
       alignself: 'center',
       bottom: '15%',
       alignItems: 'center',
-      justifyContent: 'center'
+      justifyContent: 'center',
+      marginLeft: 14
 
     },
     buttonText:{
       fontSize: 18,
       color: '#FFF',
-      fontWeight: 'bold'
+      fontWeight: 'bold',
+      
     }
     })
 export default Home;

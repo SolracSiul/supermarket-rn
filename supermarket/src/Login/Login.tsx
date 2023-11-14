@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   StyleSheet,
   Text,
@@ -9,32 +9,45 @@ import {
 import Icon from "react-native-vector-icons/AntDesign";
 import * as Animatable from 'react-native-animatable'
 import tw from "twrnc";
+import { API_URL, useAuth } from "../Context/AuthContext";
+import axios from "axios";
 
 const Login = ({navigation}) => {
-  const [form, setForm] = useState({
-    email: "",
-    password: "",
-  });
-  const onPressLogin = () => {
-    navigation.navigate("ProductList")
-    console.log(form)
-  };
-  const onPressProductList = () =>{
-    navigation.navigate("ProductList")
+  const [email, setEmail] = useState('');
+  const [password, setPassoword] = useState('');
+  const {onLogin} = useAuth();
+  
+  useEffect(() => {
+    const testeCall = async () => {
+      try {
+        const teste = await axios.get(`http://192.168.15.6:3000/products`);
+        console.log('Resultado do meu testeCall:', JSON.stringify(teste.data));
+      } catch (error) {
+        console.error('Erro na chamada à API:', error);
+      }
+    };
+  
+    testeCall();
+  }, []);
+
+  const login = async() =>{
+    const result = await onLogin!(email, password);
+    if(result && result.error){     
+      alert(result.msg)
+    }
   }
+  const onPressLogin = () => {
+    console.log('entrando')
+    login()
+    // navigation.navigate("ProductList")
+  };
   const onPressForgotPassword = () => {
     navigation.navigate("ForgotPassword")
   };
   const onPressSignUp = () => {
     navigation.navigate("CreateAccount")
   };
-  const handleEmailChange = (text) => {
-    setForm({ ...form, email: text });
-  };
-
-  const handlePasswordChange = (text) => {
-    setForm({ ...form, password: text });
-  };
+  
   return (
     <View style={styles.container}>
       <Animatable.View animation="fadeInLeft" delay={500} style={styles.containerHeader}>
@@ -44,16 +57,21 @@ const Login = ({navigation}) => {
       <Animatable.View animation="fadeInUp" style={styles.containerForm}>
         <Text style={styles.title}>Email</Text>
         <TextInput
-          placeholder="Digite um email..."
+          placeholder="Seu Email"
           style={styles.input}
+          onChangeText={(text: string)=> setEmail(text)}
+          value={email}
           />
           <Text style={styles.title}>Senha</Text>
           <TextInput
           placeholder="Sua senha."
+          secureTextEntry={true}
           style={styles.input}
+          onChangeText={(text: string)=> setPassoword(text)}
+          value={password}
         />
       <View style={tw`w-[100%] flex items-center justify-center`}>
-        <TouchableOpacity style={styles.customBtn} onPress={() => onPressLogin()} >
+        <TouchableOpacity style={styles.customBtn} onPress={onPressLogin} >
             <Text style={styles.buttonText}>Entrar</Text>
         </TouchableOpacity>
       </View>

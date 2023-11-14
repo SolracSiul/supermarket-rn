@@ -21,7 +21,7 @@ function ProductDetails({route}) {
    <SafeAreaView>
         <ScrollView>
             <View style={styles.imageContainer}>
-                <Image style={styles.image} source={product.image}></Image>
+                <Image style={styles.image} source={{uri:product.image}}></Image>
             </View>
             <View style={styles.infoContainer}>
                 <Text style={styles.name}>{product.name}</Text>

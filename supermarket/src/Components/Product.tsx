@@ -5,7 +5,7 @@ import {Text ,Image, View, StyleSheet, TouchableOpacity} from "react-native";
 function Product({name,price,image,onPress}) {
   return (
     <TouchableOpacity style={styles.card} onPress={onPress}>
-        <Image style={styles.image} source={image}/>
+        <Image style={styles.image} source={{ uri: image}}/>
         <View style={styles.infoContainer}>
             <Text style={styles.name}>{name}</Text>
             <Text style={styles.price}>${price}</Text>

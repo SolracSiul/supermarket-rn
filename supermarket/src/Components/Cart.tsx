@@ -24,7 +24,7 @@ function Cart({navigation}) {
         return(
             <>
                 <View style={styles.cartLine}>
-                    <Image style={styles.image} source={item.product.image} />
+                    <Image style={styles.image} source={{uri: item.product.image}} />
                     <Text style={styles.lineLeft}>{item.product.name} x {item.qtd} <Text style={styles.productTotal}>${item.totalPrice}</Text></Text>
                 </View>
             </>
